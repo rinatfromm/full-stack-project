@@ -26,7 +26,12 @@ router.post("/register", UserController.register);
 router.post("/login", UserController.login);
 router.get("/current", authenticateToken, UserController.current);
 router.get("/users/:id", authenticateToken, UserController.getUserById);
-router.put("/users/:id", authenticateToken, UserController.updateUser);
+router.put(
+  "/users/:id",
+  authenticateToken,
+  uploads.single("avatar"),
+  UserController.updateUser
+);
 
 //posts-routes
 router.post("/posts", authenticateToken, PostController.createPost);
@@ -48,6 +53,10 @@ router.delete("/likes/:id", authenticateToken, LikeController.unlikePost);
 
 // follow-routes
 router.post("/follow", authenticateToken, FollowController.followUser);
-router.delete("/unfollow/:id",authenticateToken, FollowController.unfollowUser);
+router.delete(
+  "/unfollow/:id",
+  authenticateToken,
+  FollowController.unfollowUser
+);
 
 module.exports = router;

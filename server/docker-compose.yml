@@ -15,4 +15,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: monty
       MONGO_INITDB_ROOT_PASSWORD: pass
+  react-app:
+    build: ../client
+    ports: 
+      - '80:80'
 
